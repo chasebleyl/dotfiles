@@ -1,0 +1,15 @@
+# Git configuration
+# Note: user.name and user.email are set via setup.sh (not stored in repo)
+
+[init]
+    defaultBranch = main
+
+[core]
+    editor = vim
+    excludesFile = ~/.config/git/ignore
+
+[pull]
+    rebase = false
+
+[push]
+    autoSetupRemote = true

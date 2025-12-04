@@ -1,0 +1,66 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# IDEs & Editors
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.swp
+*.swo
+*~
+
+# .NET / C#
+bin/
+obj/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+*.nupkg
+*.snupkg
+project.lock.json
+*.nuget.props
+*.nuget.targets
+.nuget/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+
+# Secrets & credentials
+*.pem
+*.key
+*.pfx
+*.p12
+secrets.json
+
+# Logs & temp
+*.log
+logs/
+tmp/
+temp/
+
+**/.claude/settings.local.json
