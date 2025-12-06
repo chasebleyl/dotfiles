@@ -32,19 +32,37 @@ git clone https://github.com/<your-username>/cb-dotfiles.git ~/Projects/cb-dotfi
 cd ~/Projects/cb-dotfiles
 ```
 
-### 2. Run the setup script
+### 2. Run the appropriate setup script
+
+#### New Machine (no existing configs)
 
 ```bash
 ./setup.sh
 ```
 
-The script will:
+This script will:
 1. Install Homebrew (if not already installed)
 2. Install all packages from the Brewfile
 3. Create XDG directories (`~/.config`, `~/.local/share`, `~/.cache`)
 4. Stow all packages (symlink configs to `$HOME`)
 5. Install NVM and Node.js LTS
 6. Prompt you to configure your git user name and email
+
+#### Existing Machine (migrating from existing configs)
+
+If you have existing configuration files that conflict with stow symlinks, use:
+
+```bash
+./setup-override.sh
+```
+
+This script will:
+1. Display all conflicting files that will be affected
+2. Back up those files to `~/.dotfiles-backup/<timestamp>/`
+3. Remove the original files
+4. Run the standard `setup.sh`
+
+The backup location is printed during execution so you can recover files if needed.
 
 ## Post-Installation Steps
 
@@ -101,7 +119,8 @@ stow -R -d ~/Projects/cb-dotfiles -t $HOME <package>
 ```
 cb-dotfiles/
 ├── Brewfile              # Homebrew packages
-├── setup.sh              # Installation script
+├── setup.sh              # Standard installation script
+├── setup-override.sh     # Migration script (backs up existing configs)
 ├── zsh/
 │   ├── .zshenv           # → ~/.zshenv
 │   └── .config/zsh/
@@ -124,5 +143,6 @@ cb-dotfiles/
 ## Notes
 
 - Git user credentials (`user.name`, `user.email`) are configured via `git config --global` and not stored in the repository
-- The setup uses `stow --adopt` which will adopt existing files into the stow package (useful for initial setup)
+- The setup uses `stow -R` (restow) which requires no conflicting files to exist; use `setup-override.sh` to migrate from existing configs
 - XDG Base Directory specification is used where possible to keep `$HOME` clean
+- Backups from `setup-override.sh` are stored in `~/.dotfiles-backup/` with timestamps

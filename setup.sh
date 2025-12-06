@@ -51,7 +51,7 @@ echo ""
 echo "Stowing packages..."
 for package in "${STOW_PACKAGES[@]}"; do
     echo "  Stowing $package..."
-    stow -R -d "$DOTFILES_DIR" -t "$HOME" --adopt "$package"
+    stow -R -d "$DOTFILES_DIR" -t "$HOME" "$package"
 done
 
 # ------------------------------------------------------------------------------

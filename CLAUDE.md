@@ -8,10 +8,16 @@ This is a dotfiles repository for macOS managed with [GNU Stow](https://www.gnu.
 
 ## Common Commands
 
-**Initial setup / update all configs:**
+**Initial setup / update all configs (new machine):**
 ```bash
 ./setup.sh
 ```
+
+**Migration setup (existing machine with configs):**
+```bash
+./setup-override.sh
+```
+This backs up existing configs to `~/.dotfiles-backup/<timestamp>/` before running `setup.sh`.
 
 **Stow a single package:**
 ```bash
@@ -47,4 +53,5 @@ Each top-level directory is a "stow package" that mirrors the target directory s
 1. Create a directory named after the package (e.g., `tmux/`)
 2. Mirror the target directory structure inside it (e.g., `tmux/.config/tmux/tmux.conf`)
 3. Add the package name to `STOW_PACKAGES` array in `setup.sh`
-4. Run `stow -R -d ~/Projects/cb-dotfiles -t $HOME <package>`
+4. Add the target paths to `STOW_CONFLICTS` array in `setup-override.sh`
+5. Run `stow -R -d ~/Projects/cb-dotfiles -t $HOME <package>`
