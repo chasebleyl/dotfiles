@@ -21,7 +21,10 @@ Personal dotfiles for macOS, managed with [GNU Stow](https://www.gnu.org/softwar
 - `git-crypt` - Transparent file encryption in git
 - `azure-cli` - Azure command-line tools
 - `stow` - Symlink farm manager
+- `claude-code` - Claude Code CLI (cask)
 - `dotnet-sdk` - .NET SDK (cask)
+- `flutter` - Flutter SDK (cask)
+- `android-commandlinetools` - Android CLI tools (cask)
 
 ## Quick Start
 
@@ -47,6 +50,7 @@ This script will:
 4. Stow all packages (symlink configs to `$HOME`)
 5. Install NVM and Node.js LTS
 6. Prompt you to configure your git user name and email
+7. Configure Claude Code MCP servers (Linear, Playwright)
 
 #### Existing Machine (migrating from existing configs)
 
@@ -91,6 +95,14 @@ az login
 ```
 
 This opens a browser for Azure authentication.
+
+### Authenticate Claude Code
+
+```bash
+claude
+```
+
+On first launch, follow the prompts to authenticate. Then run `/mcp` within Claude Code to authenticate the MCP servers (Linear, Playwright).
 
 ### Optional: Local zsh customizations
 
