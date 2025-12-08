@@ -14,6 +14,7 @@ brew "azure-cli"
 brew "stow"
 
 # Casks
+cask "claude-code"
 cask "dotnet-sdk"
 cask "flutter"
 cask "android-commandlinetools"

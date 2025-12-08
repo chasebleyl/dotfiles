@@ -110,7 +110,21 @@ if [[ -z "$existing_name" || -z "$existing_email" ]]; then
 fi
 
 # ------------------------------------------------------------------------------
-# 7. Post-install reminders
+# 7. Configure Claude Code MCP servers
+# ------------------------------------------------------------------------------
+if command -v claude &>/dev/null; then
+    echo ""
+    echo "Configuring Claude Code MCP servers..."
+    claude mcp add --scope user --transport http linear-server https://mcp.linear.app/mcp
+    claude mcp add --scope user playwright npx @playwright/mcp@latest
+else
+    echo ""
+    echo "Claude Code not found - skipping MCP server configuration."
+    echo "Run 'brew bundle' and re-run this script to configure MCP servers."
+fi
+
+# ------------------------------------------------------------------------------
+# 8. Post-install reminders
 # ------------------------------------------------------------------------------
 echo ""
 echo "Setup complete!"
@@ -118,4 +132,6 @@ echo ""
 echo "Post-install steps:"
 echo "  - Run 'gh auth login' to authenticate with GitHub"
 echo "  - Run 'az login' to authenticate with Azure"
+echo "  - Run 'claude' to authenticate Claude Code on initial launch"
+echo "  - Run '/mcp' within Claude Code to authenticate MCP server(s)"
 echo "  - Restart your shell or run 'source ~/.zshenv' to apply zsh config"
