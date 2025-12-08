@@ -15,3 +15,5 @@ brew "stow"
 
 # Casks
 cask "dotnet-sdk"
+cask "flutter"
+cask "android-commandlinetools"
