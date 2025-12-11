@@ -5,7 +5,7 @@ set -euo pipefail
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # Stow packages to install
-STOW_PACKAGES=(zsh git starship gh vim)
+STOW_PACKAGES=(zsh git starship gh vim jenv)
 
 echo "Dotfiles directory: $DOTFILES_DIR"
 echo "Target directory: $HOME"
@@ -45,7 +45,45 @@ mkdir -p "$HOME/.local/share"
 mkdir -p "$HOME/.cache"
 
 # ------------------------------------------------------------------------------
-# 4. Stow packages (symlink configs to $HOME)
+# 4. Configure Android SDK cmdline-tools (for Flutter)
+# ------------------------------------------------------------------------------
+ANDROID_HOME="$HOME/android-sdk"
+CMDLINE_TOOLS_SRC="/opt/homebrew/share/android-commandlinetools/cmdline-tools/latest"
+
+if [[ -d "$CMDLINE_TOOLS_SRC" ]]; then
+    echo ""
+    echo "Configuring Android SDK cmdline-tools..."
+    mkdir -p "$ANDROID_HOME/cmdline-tools"
+
+    # Create symlink (force to update if it already exists)
+    if [[ -L "$ANDROID_HOME/cmdline-tools/latest" ]]; then
+        echo "  Updating existing cmdline-tools symlink..."
+        rm "$ANDROID_HOME/cmdline-tools/latest"
+    fi
+
+    ln -s "$CMDLINE_TOOLS_SRC" "$ANDROID_HOME/cmdline-tools/latest"
+    echo "  Symlinked cmdline-tools to $ANDROID_HOME/cmdline-tools/latest"
+
+    # Install required Android SDK components for Flutter
+    echo ""
+    echo "Installing Android SDK components for Flutter..."
+    export ANDROID_HOME
+    SDKMANAGER="$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
+
+    # Accept licenses automatically (specify sdk_root to install in ANDROID_HOME)
+    yes | "$SDKMANAGER" --sdk_root="$ANDROID_HOME" --licenses > /dev/null 2>&1 || true
+
+    # Install platform and build tools (update versions as Flutter requirements change)
+    "$SDKMANAGER" --sdk_root="$ANDROID_HOME" "platforms;android-36" "build-tools;36.0.0"
+    echo "  Android SDK components installed."
+else
+    echo ""
+    echo "Android cmdline-tools not found at $CMDLINE_TOOLS_SRC"
+    echo "  Install with: brew install --cask android-commandlinetools"
+fi
+
+# ------------------------------------------------------------------------------
+# 5. Stow packages (symlink configs to $HOME)
 # ------------------------------------------------------------------------------
 echo ""
 echo "Stowing packages..."
@@ -55,7 +93,7 @@ for package in "${STOW_PACKAGES[@]}"; do
 done
 
 # ------------------------------------------------------------------------------
-# 5. Install NVM (Node Version Manager)
+# 6. Install NVM (Node Version Manager)
 # ------------------------------------------------------------------------------
 export NVM_DIR="$HOME/.nvm"
 if [[ ! -d "$NVM_DIR" ]]; then
@@ -77,7 +115,51 @@ else
 fi
 
 # ------------------------------------------------------------------------------
-# 6. Configure git user (not stored in repo)
+# 7. Configure jenv (Java version manager)
+# ------------------------------------------------------------------------------
+if command -v jenv &>/dev/null; then
+    echo ""
+    echo "Configuring jenv..."
+
+    # Initialize jenv for this session
+    export PATH="$HOME/.jenv/bin:$PATH"
+    eval "$(jenv init -)"
+
+    # Create jenv directories if needed
+    mkdir -p "$HOME/.jenv/versions"
+
+    # Register installed JDKs with jenv
+    # OpenJDK paths vary by architecture
+    if [[ -f "/opt/homebrew/bin/brew" ]]; then
+        HOMEBREW_PREFIX="/opt/homebrew"
+    else
+        HOMEBREW_PREFIX="/usr/local"
+    fi
+
+    # OpenJDK 21 (LTS)
+    if [[ -d "$HOMEBREW_PREFIX/opt/openjdk@21/libexec/openjdk.jdk/Contents/Home" ]]; then
+        echo "  Adding OpenJDK 21..."
+        jenv add "$HOMEBREW_PREFIX/opt/openjdk@21/libexec/openjdk.jdk/Contents/Home" 2>/dev/null || true
+    fi
+
+    # OpenJDK (latest - currently 25)
+    if [[ -d "$HOMEBREW_PREFIX/opt/openjdk/libexec/openjdk.jdk/Contents/Home" ]]; then
+        echo "  Adding OpenJDK (latest)..."
+        jenv add "$HOMEBREW_PREFIX/opt/openjdk/libexec/openjdk.jdk/Contents/Home" 2>/dev/null || true
+    fi
+
+    # Note: JDK 21 is set as global default via stowed .jenv/version file
+
+    echo "  jenv configured. Available versions:"
+    jenv versions
+    echo "  Global default: $(cat "$HOME/.jenv/version" 2>/dev/null || echo 'not set')"
+else
+    echo ""
+    echo "jenv not found - skipping Java configuration."
+fi
+
+# ------------------------------------------------------------------------------
+# 8. Configure git user (not stored in repo)
 # ------------------------------------------------------------------------------
 echo ""
 echo "Configuring git user..."
@@ -110,7 +192,7 @@ if [[ -z "$existing_name" || -z "$existing_email" ]]; then
 fi
 
 # ------------------------------------------------------------------------------
-# 7. Configure Claude Code MCP servers
+# 9. Configure Claude Code MCP servers
 # ------------------------------------------------------------------------------
 if command -v claude &>/dev/null; then
     echo ""
@@ -124,7 +206,7 @@ else
 fi
 
 # ------------------------------------------------------------------------------
-# 8. Post-install reminders
+# 10. Post-install reminders
 # ------------------------------------------------------------------------------
 echo ""
 echo "Setup complete!"

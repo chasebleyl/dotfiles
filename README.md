@@ -11,6 +11,7 @@ Personal dotfiles for macOS, managed with [GNU Stow](https://www.gnu.org/softwar
 | `starship`| Starship prompt configuration        |
 | `gh`      | GitHub CLI configuration             |
 | `vim`     | Vim configuration                    |
+| `jenv`    | Java version manager                 |
 
 ### Installed via Brewfile
 
@@ -21,6 +22,11 @@ Personal dotfiles for macOS, managed with [GNU Stow](https://www.gnu.org/softwar
 - `git-crypt` - Transparent file encryption in git
 - `azure-cli` - Azure command-line tools
 - `stow` - Symlink farm manager
+- `cocoapods` - iOS/macOS dependency manager
+- `jenv` - Java version manager
+- `openjdk@21` - OpenJDK 21 (LTS)
+- `openjdk` - OpenJDK (latest)
+- `terraform` - Infrastructure as code tool
 - `claude-code` - Claude Code CLI (cask)
 - `dotnet-sdk` - .NET SDK (cask)
 - `flutter` - Flutter SDK (cask)
@@ -47,10 +53,12 @@ This script will:
 1. Install Homebrew (if not already installed)
 2. Install all packages from the Brewfile
 3. Create XDG directories (`~/.config`, `~/.local/share`, `~/.cache`)
-4. Stow all packages (symlink configs to `$HOME`)
-5. Install NVM and Node.js LTS
-6. Prompt you to configure your git user name and email
-7. Configure Claude Code MCP servers (Linear, Playwright)
+4. Configure Android SDK cmdline-tools (for Flutter)
+5. Stow all packages (symlink configs to `$HOME`)
+6. Install NVM and Node.js LTS
+7. Configure jenv with installed OpenJDK versions
+8. Prompt you to configure your git user name and email
+9. Configure Claude Code MCP servers (Linear, Playwright)
 
 #### Existing Machine (migrating from existing configs)
 
@@ -102,7 +110,7 @@ This opens a browser for Azure authentication.
 claude
 ```
 
-On first launch, follow the prompts to authenticate. Then run `/mcp` within Claude Code to authenticate the MCP servers (Linear, Playwright).
+On first launch, follow the prompts to authenticate. Then run `/mcp` within Claude Code to authenticate MCP servers (Linear, Playwright).
 
 ### Optional: Local zsh customizations
 
@@ -148,8 +156,11 @@ cb-dotfiles/
 ├── gh/
 │   └── .config/gh/
 │       └── config.yml    # → ~/.config/gh/config.yml
-└── vim/
-    └── .vimrc            # → ~/.vimrc
+├── vim/
+│   └── .vimrc            # → ~/.vimrc
+└── jenv/
+    └── .jenv/
+        └── version       # → ~/.jenv/version
 ```
 
 ## Notes

@@ -2,7 +2,7 @@
 # Run: brew bundle --file=<path>/Brewfile
 
 # Taps
-# (add any custom taps here)
+tap "hashicorp/tap"
 
 # Core tools
 brew "zsh"
@@ -12,6 +12,17 @@ brew "gh"
 brew "git-crypt"
 brew "azure-cli"
 brew "stow"
+
+# iOS/macOS development
+brew "cocoapods"
+
+# Java version management
+brew "jenv"
+brew "openjdk@21"
+brew "openjdk"
+
+# Infrastructure tools
+brew "hashicorp/tap/terraform"
 
 # Casks
 cask "claude-code"

@@ -48,10 +48,19 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # ------------------------------------------------------------------------------
+# jenv (Java version manager)
+# ------------------------------------------------------------------------------
+export PATH="$HOME/.jenv/bin:$PATH"
+if command -v jenv &>/dev/null; then
+    eval "$(jenv init -)"
+fi
+
+# ------------------------------------------------------------------------------
 # Android SDK (NOTE: may need to be updated if/when Android Studio is installed)
 # ------------------------------------------------------------------------------
 export ANDROID_HOME="$HOME/android-sdk"
 export PATH="$PATH:$ANDROID_HOME/platform-tools"
+export PATH="$PATH:$ANDROID_HOME/cmdline-tools/latest/bin"
 
 # ------------------------------------------------------------------------------
 # Aliases

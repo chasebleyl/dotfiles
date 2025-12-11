@@ -1,2 +1,6 @@
 gh/.config/gh/hosts.yml
 zsh/.config/zsh/.zcompdump*
+
+# jenv auto-generated files (keep only version file)
+jenv/.jenv/*
+!jenv/.jenv/version

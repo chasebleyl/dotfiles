@@ -25,6 +25,7 @@ STOW_CONFLICTS=(
     "$HOME/.config/starship.toml"
     "$HOME/.config/gh"
     "$HOME/.vimrc"
+    "$HOME/.jenv"
 )
 
 # Legacy zsh files that become dead after ZDOTDIR is set
