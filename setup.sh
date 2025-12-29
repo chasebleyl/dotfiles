@@ -5,7 +5,7 @@ set -euo pipefail
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # Stow packages to install
-STOW_PACKAGES=(zsh git starship gh vim jenv)
+STOW_PACKAGES=(zsh git starship gh vim jenv iterm2 vscode)
 
 echo "Dotfiles directory: $DOTFILES_DIR"
 echo "Target directory: $HOME"
@@ -93,7 +93,16 @@ for package in "${STOW_PACKAGES[@]}"; do
 done
 
 # ------------------------------------------------------------------------------
-# 6. Install NVM (Node Version Manager)
+# 6. Configure iTerm2 to use dotfiles preferences
+# ------------------------------------------------------------------------------
+echo ""
+echo "Configuring iTerm2 preferences location..."
+defaults write com.googlecode.iterm2 PrefsCustomFolder -string "$HOME/.config/iterm2"
+defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder -bool true
+echo "  iTerm2 will load preferences from: ~/.config/iterm2"
+
+# ------------------------------------------------------------------------------
+# 7. Install NVM (Node Version Manager)
 # ------------------------------------------------------------------------------
 export NVM_DIR="$HOME/.nvm"
 if [[ ! -d "$NVM_DIR" ]]; then
@@ -115,7 +124,7 @@ else
 fi
 
 # ------------------------------------------------------------------------------
-# 7. Configure jenv (Java version manager)
+# 8. Configure jenv (Java version manager)
 # ------------------------------------------------------------------------------
 if command -v jenv &>/dev/null; then
     echo ""
@@ -159,7 +168,7 @@ else
 fi
 
 # ------------------------------------------------------------------------------
-# 8. Configure git user (not stored in repo)
+# 9. Configure git user (not stored in repo)
 # ------------------------------------------------------------------------------
 echo ""
 echo "Configuring git user..."
@@ -192,7 +201,7 @@ if [[ -z "$existing_name" || -z "$existing_email" ]]; then
 fi
 
 # ------------------------------------------------------------------------------
-# 9. Configure Claude Code MCP servers
+# 10. Configure Claude Code MCP servers
 # ------------------------------------------------------------------------------
 if command -v claude &>/dev/null; then
     echo ""
@@ -206,7 +215,7 @@ else
 fi
 
 # ------------------------------------------------------------------------------
-# 10. Post-install reminders
+# 11. Post-install reminders
 # ------------------------------------------------------------------------------
 echo ""
 echo "Setup complete!"
@@ -217,3 +226,5 @@ echo "  - Run 'az login' to authenticate with Azure"
 echo "  - Run 'claude' to authenticate Claude Code on initial launch"
 echo "  - Run '/mcp' within Claude Code to authenticate MCP server(s)"
 echo "  - Restart your shell or run 'source ~/.zshenv' to apply zsh config"
+echo "  - Restart iTerm2 to load preferences from dotfiles"
+echo "  - Set iTerm2 font to 'FiraCode Nerd Font Mono' in Preferences > Profiles > Text"

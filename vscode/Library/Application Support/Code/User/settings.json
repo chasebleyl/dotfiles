@@ -1,0 +1,67 @@
+{
+  "security.workspace.trust.untrustedFiles": "open",
+  "explorer.confirmDragAndDrop": false,
+  "explorer.confirmDelete": false,
+  "files.exclude": {
+    "": true,
+    "**/.git": false
+  },
+  "window.systemColorTheme": "auto",
+  "workbench.colorTheme": "Default Light Modern",
+  "docker.extension.enableComposeLanguageServer": false,
+  "mssql.openQueryResultsInTabByDefaultDoNotShowPrompt": true,
+  "FSharp.suggestGitignore": false,
+  "dotnet.formatting.organizeImportsOnFormat": true,
+  "csharp.debug.logging.diagnosticsLog.debugEngineAPITracing": "error",
+  "csharp.debug.logging.elapsedTiming": true,
+  "csharp.debug.logging.threadExit": true,
+  "omnisharp.loggingLevel": "debug",
+  "window.autoDetectColorScheme": true,
+  "[dockercompose]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.autoIndent": "advanced",
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": false,
+      "strings": true
+    },
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "[github-actions-workflow]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "workbench.preferredDarkColorTheme": "Visual Studio 2019 Dark",
+  "gitlens.ai.model": "vscode",
+  "gitlens.ai.vscode.model": "copilot:gpt-4.1",
+  "workbench.startupEditor": "none",
+  "workbench.secondarySideBar.defaultVisibility": "hidden",
+  "editor.quickSuggestions": {
+    "other": "off"
+  },
+  "editor.quickSuggestionsDelay": 10000,
+  "github.copilot.enable": {
+    "*": false,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false
+  },
+  "[dart]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "editor.rulers": [
+      80
+    ],
+    "editor.selectionHighlight": false,
+    "editor.tabCompletion": "onlySnippets",
+    "editor.wordBasedSuggestions": "off"
+  },
+  "claudeCode.preferredLocation": "sidebar",
+  "terminal.integrated.fontFamily": "FiraCode Nerd Font Mono",
+  "mssql.connectionGroups": [
+    {
+      "name": "ROOT",
+      "id": "158D40E2-B442-4708-AC24-5B38B3861489"
+    }
+  ]
+}

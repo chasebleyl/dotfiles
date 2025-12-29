@@ -21,7 +21,7 @@ $kubernetes\
 $directory\
 $vcsh\
 $fossil_branch\
-$git_branch\
+${custom.git_branch}\
 $git_commit\
 $git_state\
 $git_status\
@@ -173,9 +173,14 @@ threshold = 70
 style = "italic dimmed yellow"
 
 [git_branch]
-symbol = ""
+disabled = true
+
+[custom.git_branch]
+command = "git branch --show-current 2>/dev/null | sed 's|^chasebleyl/||'"
+when = "git rev-parse --is-inside-work-tree 2>/dev/null"
+symbol = ""
 style = "#FCA17D"
-format = '[ | $branch]($style)'
+format = '[ | $symbol $output]($style)'
 
 [git_metrics]
 format = '([▴$added]($added_style))([▿$deleted]($deleted_style))'

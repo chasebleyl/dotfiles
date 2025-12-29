@@ -29,3 +29,7 @@ cask "claude-code"
 cask "dotnet-sdk"
 cask "flutter"
 cask "android-commandlinetools"
+cask "iterm2"
+
+# Fonts (requires homebrew/cask-fonts tap)
+cask "font-fira-code-nerd-font"

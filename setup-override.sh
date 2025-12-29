@@ -26,6 +26,8 @@ STOW_CONFLICTS=(
     "$HOME/.config/gh"
     "$HOME/.vimrc"
     "$HOME/.jenv"
+    "$HOME/.config/iterm2"
+    "$HOME/Library/Application Support/Code/User"
 )
 
 # Legacy zsh files that become dead after ZDOTDIR is set
