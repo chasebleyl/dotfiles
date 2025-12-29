@@ -30,6 +30,7 @@ cask "dotnet-sdk"
 cask "flutter"
 cask "android-commandlinetools"
 cask "iterm2"
+cask "visual-studio-code"
 
 # Fonts (requires homebrew/cask-fonts tap)
 cask "font-fira-code-nerd-font"
