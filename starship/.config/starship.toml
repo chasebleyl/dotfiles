@@ -147,13 +147,13 @@ disabled = false
 
 [time]
 disabled = false
-format = "[ $time]($style)"
+format = "[ | $time]($style)"
 time_format = "%R"
 utc_time_offset = "local"
 style = "italic dimmed white"
 
 [battery]
-format = "[ $percentage $symbol]($style)"
+format = "[ | $percentage $symbol]($style)"
 full_symbol = "█"
 charging_symbol = "[↑](italic bold green)"
 discharging_symbol = "↓"
@@ -173,13 +173,9 @@ threshold = 70
 style = "italic dimmed yellow"
 
 [git_branch]
-format = " [$branch(:$remote_branch)]($style)"
-symbol = "[△](bold italic bright-blue)"
-style = "italic bright-blue"
-truncation_symbol = "⋯"
-truncation_length = 11
-ignore_branches = ["main", "master"]
-only_attached = true
+symbol = ""
+style = "#FCA17D"
+format = '[ | $branch]($style)'
 
 [git_metrics]
 format = '([▴$added]($added_style))([▿$deleted]($deleted_style))'
@@ -189,30 +185,23 @@ ignore_submodules = true
 disabled = false
 
 [git_status]
-style = "bold italic bright-blue"
-format = "([⎪$ahead_behind$staged$modified$untracked$renamed$deleted$conflicted$stashed⎥]($style))"
-conflicted = "[◪◦](italic bright-magenta)"
-ahead = "[▴│[${count}](bold white)│](italic green)"
-behind = "[▿│[${count}](bold white)│](italic red)"
-diverged = "[◇ ▴┤[${ahead_count}](regular white)│▿┤[${behind_count}](regular white)│](italic bright-magenta)"
-untracked = "[◌◦](italic bright-yellow)"
-stashed = "[◃◈](italic white)"
-modified = "[●◦](italic yellow)"
-staged = "[▪┤[$count](bold white)│](italic bright-cyan)"
-renamed = "[◎◦](italic bright-blue)"
-deleted = "[✕](italic red)"
+style = "#FCA17D"
+format = '[ $all_status$ahead_behind]($style)'
 
 [deno]
+disabled = true
 format = " [deno](italic) [∫ $version](green bold)"
 version_format = "${raw}"
 
 [lua]
+disabled = true
 format = " [lua](italic) [${symbol}${version}]($style)"
 version_format = "${raw}"
 symbol = "⨀ "
 style = "bold bright-yellow"
 
 [nodejs]
+disabled = true
 format = " [node](italic) [◫ ($version)](bold bright-green)"
 version_format = "${raw}"
 detect_files = ["package-lock.json", "yarn.lock"]
@@ -220,30 +209,35 @@ detect_folders = ["node_modules"]
 detect_extensions = []
 
 [python]
+disabled = true
 format = " [py](italic) [${symbol}${version}]($style)"
 symbol = "[⌉](bold bright-blue)⌊ "
 version_format = "${raw}"
 style = "bold bright-yellow"
 
 [ruby]
+disabled = true
 format = " [rb](italic) [${symbol}${version}]($style)"
 symbol = "◆ "
 version_format = "${raw}"
 style = "bold red"
 
 [rust]
+disabled = true
 format = " [rs](italic) [$symbol$version]($style)"
 symbol = "⊃ "
 version_format = "${raw}"
 style = "bold red"
 
 [package]
+disabled = true
 format = " [pkg](italic dimmed) [$symbol$version]($style)"
 version_format = "${raw}"
 symbol = "◨ "
 style = "dimmed yellow italic bold"
 
 [swift]
+disabled = true
 format = " [sw](italic) [${symbol}${version}]($style)"
 symbol = "◁ "
 style = "bold bright-red"
@@ -256,54 +250,67 @@ style = "bold blue"
 symbol = "▲ "
 
 [buf]
+disabled = true
 symbol = "■ "
 format = " [buf](italic) [$symbol $version $buf_version]($style)"
 
 [c]
+disabled = true
 symbol = "ℂ "
 format = " [$symbol($version(-$name))]($style)"
 
 [cpp]
+disabled = true
 symbol = "ℂ "
 format = " [$symbol($version(-$name))]($style)"
 
 [conda]
+disabled = true
 symbol = "◯ "
 format = " conda [$symbol$environment]($style)"
 
 [pixi]
+disabled = true
 symbol = "■ "
 format = " pixi [$symbol$version ($environment )]($style)"
 
 [dart]
+disabled = true
 symbol = "◁◅ "
 format = " dart [$symbol($version )]($style)"
 
 [docker_context]
-symbol = "◧ "
-format = " docker [$symbol$context]($style)"
+symbol = ""
+style = "#06969A"
+format = '[ | $context]($style)'
 
 [elixir]
+disabled = true
 symbol = "△ "
 format = " exs [$symbol $version OTP $otp_version ]($style)"
 
 [elm]
+disabled = true
 symbol = "◩ "
 format = " elm [$symbol($version )]($style)"
 
 [golang]
+disabled = true
 symbol = "∩ "
 format = " go [$symbol($version )]($style)"
 
 [haskell]
+disabled = true
 symbol = "❯λ "
 format = " hs [$symbol($version )]($style)"
 
 [java]
+disabled = true
 symbol = "∪ "
 format = " java [${symbol}(${version} )]($style)"
 
 [julia]
+disabled = true
 symbol = "◎ "
 format = " jl [$symbol($version )]($style)"
 
@@ -312,6 +319,7 @@ symbol = "▪▫▪ "
 format = " mem [${ram}( ${swap})]($style)"
 
 [nim]
+disabled = true
 symbol = "▴▲▴ "
 format = " nim [$symbol($version )]($style)"
 
@@ -324,5 +332,96 @@ pure_msg = '[⌾](bold dimmed green)'
 unknown_msg = '[◌](bold dimmed yellow)'
 
 [spack]
+disabled = true
 symbol = "◇ "
 format = " spack [$symbol$environment]($style)"
+
+[cmake]
+disabled = true
+
+[cobol]
+disabled = true
+
+[daml]
+disabled = true
+
+[dotnet]
+disabled = true
+
+[erlang]
+disabled = true
+
+[fennel]
+disabled = true
+
+[fortran]
+disabled = true
+
+[haxe]
+disabled = true
+
+[helm]
+disabled = true
+
+[kotlin]
+disabled = true
+
+[gradle]
+disabled = true
+
+[ocaml]
+disabled = true
+
+[opa]
+disabled = true
+
+[perl]
+disabled = true
+
+[php]
+disabled = true
+
+[pulumi]
+disabled = true
+
+[purescript]
+disabled = true
+
+[raku]
+disabled = true
+
+[rlang]
+disabled = true
+
+[red]
+disabled = true
+
+[scala]
+disabled = true
+
+[solidity]
+disabled = true
+
+[terraform]
+disabled = true
+
+[vlang]
+disabled = true
+
+[vagrant]
+disabled = true
+
+[xmake]
+disabled = true
+
+[zig]
+disabled = true
+
+[meson]
+disabled = true
+
+[crystal]
+disabled = true
+
+[guix_shell]
+disabled = true
