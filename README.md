@@ -4,33 +4,8 @@ Personal dotfiles for macOS, managed with [GNU Stow](https://www.gnu.org/softwar
 
 ## What's Included
 
-| Package   | Description                          |
-|-----------|--------------------------------------|
-| `zsh`     | Zsh configuration with XDG support   |
-| `git`     | Git config and global gitignore      |
-| `starship`| Starship prompt configuration        |
-| `gh`      | GitHub CLI configuration             |
-| `vim`     | Vim configuration                    |
-| `jenv`    | Java version manager                 |
-
-### Installed via Brewfile
-
-- `zsh` - Shell
-- `starship` - Cross-shell prompt
-- `git` - Version control
-- `gh` - GitHub CLI
-- `git-crypt` - Transparent file encryption in git
-- `azure-cli` - Azure command-line tools
-- `stow` - Symlink farm manager
-- `cocoapods` - iOS/macOS dependency manager
-- `jenv` - Java version manager
-- `openjdk@21` - OpenJDK 21 (LTS)
-- `openjdk` - OpenJDK (latest)
-- `terraform` - Infrastructure as code tool
-- `claude-code` - Claude Code CLI (cask)
-- `dotnet-sdk` - .NET SDK (cask)
-- `flutter` - Flutter SDK (cask)
-- `android-commandlinetools` - Android CLI tools (cask)
+- **Stow packages**: Each top-level directory (e.g., `zsh/`, `git/`, `starship/`) is a configuration package managed by stow
+- **Homebrew dependencies**: See [`Brewfile`](Brewfile) for the complete list of installed formulae and casks
 
 ## Quick Start
 
