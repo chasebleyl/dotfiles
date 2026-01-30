@@ -254,6 +254,9 @@ format = " [aws](italic) [$symbol $profile $region]($style)"
 style = "bold blue"
 symbol = "▲ "
 
+[gcloud]
+disabled = true
+
 [buf]
 disabled = true
 symbol = "■ "
