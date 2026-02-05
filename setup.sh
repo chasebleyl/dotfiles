@@ -102,6 +102,20 @@ defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder -bool true
 echo "  iTerm2 will load preferences from: ~/.config/iterm2"
 
 # ------------------------------------------------------------------------------
+# 6b. Install it2 (iTerm2 CLI tool)
+# ------------------------------------------------------------------------------
+if command -v uv &>/dev/null; then
+    echo ""
+    echo "Installing it2 (iTerm2 CLI)..."
+    uv tool install it2
+    echo "  it2 installed. Run 'it2 --help' to see available commands."
+else
+    echo ""
+    echo "uv not found - skipping it2 installation."
+    echo "  Install with: brew install uv && uv tool install it2"
+fi
+
+# ------------------------------------------------------------------------------
 # 7. Install NVM (Node Version Manager)
 # ------------------------------------------------------------------------------
 export NVM_DIR="$HOME/.nvm"
@@ -228,3 +242,4 @@ echo "  - Run '/mcp' within Claude Code to authenticate MCP server(s)"
 echo "  - Restart your shell or run 'source ~/.zshenv' to apply zsh config"
 echo "  - Restart iTerm2 to load preferences from dotfiles"
 echo "  - Set iTerm2 font to 'FiraCode Nerd Font Mono' in Preferences > Profiles > Text"
+echo "  - Enable iTerm2 Python API: Preferences > General > Magic > Enable Python API"

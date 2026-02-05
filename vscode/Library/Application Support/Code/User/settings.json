@@ -61,7 +61,7 @@
   "mssql.connectionGroups": [
     {
       "name": "ROOT",
-      "id": "158D40E2-B442-4708-AC24-5B38B3861489"
+      "id": "ROOT"
     }
   ]
 }

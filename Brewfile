@@ -12,6 +12,7 @@ brew "gh"
 brew "git-crypt"
 brew "azure-cli"
 brew "stow"
+brew "uv"
 
 # iOS/macOS development
 brew "cocoapods"
